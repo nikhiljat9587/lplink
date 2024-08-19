@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #adf9f2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .btn-custom {
+            background-color: #f9c513;
+            color: #000;
+        }
+        .warning-text {
+            color: red;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+     <a class="navbar-brand" href="#" onclick="goBack()"><img src="back.png" alt="Back"></a>
+    <h3 class="text-center mb-4" style="color: red;">Recharge</h3>
+    <form id="rechargeForm">
+        <div class="mb-3">
+            <input type="number" class="form-control" id="amount" placeholder="Please Enter The Amount">
+            <div class="warning-text mt-2" id="warningText">The minimum recharge amount is 100 Rs.</div>
+        </div>
+        <button type="button" class="btn btn-custom w-100" onclick="validateAmount()">Confirm</button>
+        
+        <div class="mt-4">
+            <h5>Payment Channel</h5>
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-secondary">Top-Up-K</button>
+                <button type="button" class="btn btn-outline-secondary">Top-Up-O</button>
+                <button type="button" class="btn btn-outline-secondary">Top-Up-M</button>
+                <button type="button" class="btn btn-outline-secondary">Top-Up-L</button>
+                <button type="button" class="btn btn-outline-secondary">Top-Up-A</button>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <h5>Recharge Notice</h5>
+            <ul>
+                <li>The minimum recharge amount is 100 Rs.</li>
+                <li>Confirm the recharge amount and fill in the UTR number correctly.</li>
+                <li>Each recharge needs to obtain the collection account again at the cashier. Please do not save the historical account recharge.</li>
+                <li>Please contact online customer service for recharging.</li>
+            </ul>
+        </div>
+    </form>
+</div>
+
+<script>
+    
+    function validateAmount() {
+        const amount = parseFloat(document.getElementById('amount').value);
+        const warningText = document.getElementById('warningText');
+        
+        if (amount < 100) {
+            warningText.style.display = 'block';
+        } else {
+            warningText.style.display = 'none';
+
+            // Existing balance ko get karte hain
+            let currentBalance = parseFloat(localStorage.getItem('rechargeAmount')) || 0;
+
+            // Nayi amount ko current balance mein add karte hain
+            const newBalance = currentBalance + amount;
+            localStorage.setItem('rechargeAmount', newBalance);
+
+            alert('Recharge successful!');
+        }
+    }
+    function goBack() {
+            window.history.back();}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

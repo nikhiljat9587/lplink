@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #adf9f2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        .tabs button {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+        }
+        .tabs button.active {
+            background-color: #d19a00;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .no-data {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+ <a class="navbar-brand" href="#" onclick="goBack()"><img src="back.png" alt="Back"></a>
+        <h2>Team Management</h2>
+        <div class="tabs">
+            <button class="tab-link active" data-tab="A">Team A</button>
+            <button class="tab-link" data-tab="B">Team B</button>
+            <button class="tab-link" data-tab="C">Team C</button>
+        </div>
+
+        <div id="tab-A" class="tab-content active">
+            <h3>Direct Joiners via Referral A</h3>
+            <table id="joinersTableA">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Recharge Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="no-data">Loading data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="tab-B" class="tab-content">
+            <h3>Joiners via Referral A (Showed in Referral B)</h3>
+            <table id="joinersTableB">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Recharge Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="no-data">Loading data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="tab-C" class="tab-content">
+            <h3>Joiners via Referral B (Showed in Referral C)</h3>
+            <table id="joinersTableC">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Recharge Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="no-data">Loading data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const tabId = link.getAttribute('data-tab');
+
+                    tabLinks.forEach(btn => btn.classList.remove('active'));
+                    link.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        if (content.id === `tab-${tabId}`) {
+                            content.classList.add('active');
+                            loadTableData(tabId);
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            function loadTableData(tabId) {
+                let url = '';
+
+                if (tabId === 'A') {
+                    url = '/api/getDirectJoinersA';
+                } else if (tabId === 'B') {
+                    url = '/api/getJoinersB';
+                } else if (tabId === 'C') {
+                    url = '/api/getJoinersC';
+                }
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.querySelector(`#joinersTable${tabId} tbody`);
+                        tableBody.innerHTML = '';
+                        if (data.length > 0) {
+                            data.forEach(user => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `<td>${user.name}</td><td>${user.phone}</td><td>${user.recharge}</td>`;
+                                tableBody.appendChild(row);
+                   ``         });
+                        } else {
+                            tableBody.innerHTML = '<tr><td colspan="3" class="no-data">No data available</td></tr>';
+                        }
+                    })
+                    .catch(() => {
+                        document.querySelector(`#joinersTable${tabId} tbody`).innerHTML = '<tr><td colspan="3" class="no-data">Error fetching data</td></tr>';
+                    });
+            }
+
+            // Load default tab
+            loadTableData('A');
+        });
+           function goBack() {
+            window.history.back();}
+    </script>
+
+</body>
+</html>

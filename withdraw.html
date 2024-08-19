@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color:  #adf9f2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: red;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 16px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .form-group .error {
+            color: red;
+            display: none;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color:#f9c513;
+            border: none;
+            border-radius: 4px;
+            color: RED;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+        .withdrawal-notes {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .withdrawal-notes ul {
+            padding-left: 20px;
+        }
+        .withdrawal-notes li {
+            margin-bottom: 10px;
+        }
+
+        /* Green Box for Showing Final Amount */
+        .infoBox {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* Red Error Box for Password */
+        .errorBox {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 20px;
+            }
+            .form-group label, 
+            .form-group input, 
+            .form-group .error, 
+            .withdrawal-notes {
+                font-size: 14px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a class="navbar-brand" href="#" onclick="goBack()"><img src="back.png" alt="Back"></a>
+        <h2>Withdraw</h2>
+        <div class="form-group">
+            <label for="withdrawAmount">Enter Withdrawal Amount (₹):</label>
+            <input type="number" id="withdrawAmount" placeholder="0" required>
+            <div class="error" id="errorMessage">Minimum withdrawal amount is ₹200.</div>
+        </div>
+        <div class="form-group">
+            <label for="withdrawPassword">Withdrawal Password:</label>
+            <input type="password" id="withdrawPassword" placeholder="Enter Withdrawal Password" required>
+            <div class="error" id="passwordErrorMessage">Please enter your withdrawal password.</div>
+        </div>
+        <button id="withdrawButton">Withdraw</button>
+
+        <div id="finalAmountBox" class="infoBox"></div> <!-- Green box to display final amount -->
+        <div id="passwordBox" class="errorBox"></div> <!-- Red box to display password error -->
+
+        <div class="withdrawal-notes">
+            <h4>Withdrawal Notes:</h4>
+            <ul>
+                <li>If you have not joined any project, you cannot quit. After joining the project, you can withdraw cash.</li>
+                <li>Withdrawal Fee: 0%</li>
+                <li>Withdrawal Time: 1-3 Days</li>
+                <li>Minimum Withdrawal: ₹200</li>
+                <li>IFSC should be 11 characters. The 5th character should be '0', not 'O'. If you fill in wrong bank information, your withdrawal will fail.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const withdrawButton = document.getElementById('withdrawButton');
+        const withdrawAmount = document.getElementById('withdrawAmount');
+        const withdrawPassword = document.getElementById('withdrawPassword');
+        const errorMessage = document.getElementById('errorMessage');
+        const passwordErrorMessage = document.getElementById('passwordErrorMessage');
+        const finalAmountBox = document.getElementById('finalAmountBox');
+        const passwordBox = document.getElementById('passwordBox');
+
+        withdrawButton.addEventListener('click', function(event) {
+            const amount = parseFloat(withdrawAmount.value);
+            const password = withdrawPassword.value.trim();
+
+            if (amount < 200) {
+                errorMessage.style.display = 'block';
+                passwordErrorMessage.style.display = 'none';
+                event.preventDefault(); // Prevents form submission or moving to the next page
+            } else if (password === '') {
+                errorMessage.style.display = 'none';
+                passwordErrorMessage.style.display = 'block';
+                passwordBox.textContent = "Please enter your withdrawal password.";
+                passwordBox.style.display = 'block';
+                setTimeout(() => {
+                    passwordBox.style.display = 'none';
+                }, 3000);
+                event.preventDefault(); // Prevents form submission if password is empty
+            } else {
+                errorMessage.style.display = 'none';
+                passwordErrorMessage.style.display = 'none';
+                const finalAmount = amount * 0.9; // Calculate 90% after 10% fee
+                finalAmountBox.textContent = `You will receive ₹${finalAmount.toFixed(2)} after fees.`;
+                finalAmountBox.style.display = 'block';
+
+                // Hide the green box after 5 seconds
+                setTimeout(() => {
+                    finalAmountBox.style.display = 'none';
+                }, 7000);
+            }
+        }); 
+          function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #adf9f2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+
+        h2 {
+            color: red;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .contact-actions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .contact-actions a {
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 4px;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .contact-actions a.telegram {
+            background-color: #0088cc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 20px;
+            }
+            .contact-actions a {
+                padding: 8px 16px;
+                font-size: 14px;
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="container">  <a class="navbar-brand" href="#" onclick="goBack()"><img src="back.png" alt="Back">
+          </a>
+
+        <h2>Contact Manager</h2>
+
+        <div class="contact-actions">
+            <a href="https://wa.me/phone_number" target="_blank" title="Contact via WhatsApp">WhatsApp</a>
+            <a href="https://t.me/username" target="_blank" title="Contact via Telegram" class="telegram">Telegram</a>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">   function goBack() {
+            window.history.back();}
+        </script>
+</html>
+    

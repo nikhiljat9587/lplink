@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header-section {
+            background-color:  #adf9f2;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        .header-section img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .balance-card {
+            background-color: #adf9f2 ;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: -30px;
+            margin-bottom: 20px;
+        }
+
+        .balance-card h5 {
+            color:  #adf9f2;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .action-buttons .btn {
+            background: linear-gradient(to right, #FF7F50, #FF4500);
+            color: white;
+            width: 45%;
+            border-radius: 25px;
+            font-size: 16px;
+            padding: 10px 0;
+        }
+
+        .menu-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-list li {
+            margin-bottom: 10px;
+        }
+
+        .menu-list .btn-menu {
+            background-color: #adf9f2;
+            color: white;
+            text-align: left;
+            padding: 10px 15px;
+            border-radius: 25px;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .menu-list .btn-menu img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        .ty{
+            color: red;
+            margin-left: 9vw;
+            margin-right: 9vw;
+            font-size: 4.5vw;
+            font-weight: bold;
+
+
+        }
+        .val2{
+             color: red;
+              font-size: 4.5vw;
+            font-weight: bold;
+            margin-left: 11vw;
+            margin-right: 11vw;
+        }
+        .val{
+             color: red;
+              font-size: 4.5vw;
+            font-weight: bold;
+            margin-left: 11vw;
+            margin-right: 11vw;
+        }
+        .ma{
+            margin-top: 4vw;
+        }
+        .menu-list .mx-3.cl{
+            color: black;
+        }
+          /* Sign out button styling */
+        .sign-out-btn {
+            background: linear-gradient(to right, #FF7F50, #FF4500);
+            color: white;
+            width: 100%;
+            border-radius: 25px;
+            font-size: 18px;
+            padding: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header-section">
+        <div class="d-flex  "><a href="#">
+            <img src="profile.png" alt="Profile Image"></a>
+        </div>
+        <div class="d-flex">
+            <div class="val">0.00 </div>  <div class="val ms-auto" >0.00 </div>
+        </div>
+        <div class="d-flex">
+            <div class="ty">Total Profit </div>  <div class="ty ms-auto" >Team Incom </div>
+        </div>
+            <div class="d-flex ma">
+            <div class="val">0.00 </div>  <div class="val ms-auto" >0.00 </div>
+        </div>
+        <div class="d-flex">
+            <div class="ty">Earnings Today </div>  <div class="ty ms-auto" >Product</div>
+        </div>
+
+      </div>
+
+    <!-- Wallet Balance and Recharge Section -->
+    <div class="balance-card mx-3" style="margin-top:5vw ;">
+      
+            <div class="d-flex ma">
+            <div class="val">0.00 </div>  <div class="val2 ms-auto" >0.00 </div>
+        </div>
+        <div class="d-flex">
+            <div class="ty"> Wallet Balance</div>  <div class="ty ms-auto" >Recharge</div>
+        </div>
+        
+    </div>  </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons mx-3">
+      <a href="recharg.html" class="btn" style="text-decoration: none; color: black;"> Recharge</a>
+       <a href="withdraw.html" class="btn" style="text-decoration: none; color: black;">Withdraw</a>
+    </div>
+
+    <!-- Menu List -->
+    <ul class="menu-list mx-3">
+        <li><a href="financiarecords.html" class="btn btn-menu" style="color: black;"><img src="financialrecords.png" alt="Financial Records "  style="color: black;">Financial Records</a></li>
+        <li><a href="bank.html" class="btn btn-menu" style="color: black;"><img src="bankaccount.png" alt="Bank Account"  style="color: black;">Bank Account</a></li>
+        <li><a href="changloginpassword.html" class="btn btn-menu" style="color: black;" ><img src="changepassword.png" alt="Change Login Password" >Change Login Password</a></li>
+        <li><a href="changpaymantpassword.html" class="btn btn-menu"style="color: black;"><img src="modifypaymentpassword.png" alt="Modify Payment Password"  >Modify Payment Password</a></li>
+        <li><a href="contactmanager.html" class="btn btn-menu" style="color: black;"><img src="contactmanager.png" alt="Contact Manager">Contact Manager</a></li>
+                <li><a href="invit.html" class="btn btn-menu" style="color: black;"><img src="add.png" alt="Invitation Link">Invitation Link</a></li>
+            <li><a href="team.html" class="btn btn-menu" style="color: black;" ><img src="team.png" alt="My Team">My Team</a></li>
+            <li><a href="bonas.html" class="btn btn-menu" style="color: black;"><img src="bonuset.png" alt="Bonus">Bonus</a></li>
+            <li><a href="app.html" class="btn btn-menu" style="color: black;"><img src="apps.png" alt="App">App</a></li>
+    </ul>
+     <!-- Sign Out Button -->
+        <button class="btn sign-out-btn" style="margin-bottom: 15vw; color:black;">SIGN OUT</button>
+    </div>
+
+    <!-- Navbar bootom -->
+
+<nav class="navbar fixed-bottom navbar-dark bg-dark" style="padding-top: 10px;">
+        <div class="container-fluid d-flex justify-content-around">
+            <a href="index.html" class="nav-item nav-link text-center">
+                <img src="home.png" class="img-fluid" style="height:35px;" alt="Home">
+            </a>
+            <a href="project.html" class="nav-item nav-link text-center">
+                <img src="project.png" class="img-fluid" style="height:35px;" alt="Project">
+              
+            </a>
+            <a href="Purchase.html" class="nav-item nav-link text-center">
+                <img src="profit.png" class="img-fluid" style="height:35px;" alt="Profit">
+               
+            </a>
+            <a href="#" class="nav-item nav-link text-center">
+                <img src="user1.png" class="img-fluid" style="height:35px;" alt="User">
+                
+            </a>
+        </div> 
+    </nav>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+<script type="text/javascript">  // Yeh function user.html load hone par balance update karega
+     window.onload = function() {
+        const storedAmount = localStorage.getItem('rechargeAmount');
+
+        // Agar storedAmount hai, toh usko balance card mein dikhate hain
+        if (storedAmount) {
+            document.querySelector('.balance-card .val2').textContent = storedAmount + " Rs";
+        }
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

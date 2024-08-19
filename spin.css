@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.wheel-container {
+    margin: 20px 0;
+    position: relative; /* To position the arrow relative to the container */
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.arrow {
+    position: absolute;
+    top: 10px; /* Adjust this value to position arrow above canvas */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px; /* Size of the arrow */
+    color: yellow; /* Arrow color */
+    z-index: 20; /* Ensure the arrow is above the wheel */
+}
+
+#spin-btn {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#spin-btn:hover {
+    background-color: #218838;
+}
+
+.leaderboard {
+    margin-top: 40px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#leaderboard-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#leaderboard-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    canvas {
+        max-width: 300px;
+    }
+    
+    #spin-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    #leaderboard-list li {
+        font-size: 16px;
+    }
+}
+
+}

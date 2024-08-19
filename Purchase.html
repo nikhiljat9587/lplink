@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar styling */
+        .navbar-custom {
+            background-color: #adf9f2;
+            color: #d35400;
+            font-weight: bold;
+        }
+
+        .navbar-custom .navbar-brand {
+            color: black;
+        }
+
+        /* Tab styling */
+        .nav-tabs {
+            border-bottom: 2px solid #adf9f2;
+        }
+
+        .nav-tabs .nav-link {
+            border: 1px solid #FFDD59;
+            border-radius: 0;
+            color: #d35400;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: #adf9f2;
+            color: black;
+            border-color: #FFDD59;
+        }
+
+        /* Centered text styling */
+        .centered-text {
+            text-align: center;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .texe {
+            text-align: center;
+            font-size: 7vw;
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Section styling */
+        .section {
+            margin: 20px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Hide sections by default */
+        }
+
+        .section h4 {
+            color: #d35400;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" onclick="goBack()"><img src="back.png" alt="Back"></a>
+            <span class="texe mx-auto">Purchase</span>
+        </div>
+    </nav>
+
+    <!-- Tabs -->
+    <div class="container mt-3">
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="showSection('allSection')">All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('ongoingSection')">OnGoing</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="showSection('finishSection')">Finish</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Section: All -->
+    <div class="section" id="allSection">
+        <h4>All Purchases</h4>
+        <p>Details of all purchases made will be shown here.</p>
+    </div>
+
+    <!-- Section: OnGoing -->
+    <div class="section" id="ongoingSection">
+        <h4>Ongoing Purchases</h4>
+        <p>Details of ongoing purchases will be shown here.</p>
+    </div>
+
+    <!-- Section: Finish -->
+    <div class="section" id="finishSection">
+        <h4>Finished Purchases</h4>
+        <p>Details of finished purchases will be shown here.</p>
+    </div>
+
+    <!-- No More Text -->
+    <div class="centered-text">
+        No More
+    </div>
+
+    <!-- Footer Navigation -->
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" style="padding-top: 10px;">
+        <div class="container-fluid d-flex justify-content-around">
+            <a href="index.html" class="nav-item nav-link text-center">
+                <img src="home.png" class="img-fluid" style="height:35px;" alt="Home">
+            </a>
+            <a href="project.html" class="nav-item nav-link text-center">
+                <img src="project.png" class="img-fluid" style="height:35px;" alt="Project">
+            </a>
+            <a href="#" class="nav-item nav-link text-center">
+                <img src="profit1.png" class="img-fluid" style="height:35px;" alt="Profit">
+            </a>
+            <a href="user.html" class="nav-item nav-link text-center">
+                <img src="user.png" class="img-fluid" style="height:35px;" alt="User">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function openPage(url) {
+            window.location.href = url;
+        }
+
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+            }
+
+            // Update active class on tabs
+            const tabs = document.querySelectorAll('.nav-link');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const activeTab = document.querySelector(`.nav-link[onclick="showSection('${sectionId}')"]`);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+        }
+
+        // Show the "All" section by default on page load
+        window.onload = function() {
+            showSection('allSection');
+        };
+    </script>
+</body>
+</html>

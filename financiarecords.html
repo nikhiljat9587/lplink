@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Record</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #adf9f2;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .record {
+            font-size: 18px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .profit-positive {
+            color: green;
+        }
+
+        .profit-negative {
+            color: red;
+        }
+
+        .tax-info {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a class="navbar-brand" href="#" onclick="goBack()"><img src="back.png" alt="Back"></a>
+        <h2>Financial Record</h2>
+        
+        <div id="rechargeSection">
+            <h3>Recharge History</h3>
+        </div>
+
+        <div class="record" id="rechargeTotalDisplay">Total Recharge: ₹0</div>
+        <div class="record" id="withdrawDisplay">Withdraw Amount: ₹0</div>
+        <div class="tax-info" id="totalTaxDisplay">Total Tax: ₹0</div>
+        <div class="record" id="profitDisplay">Profit: ₹0</div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            // Get recharge history from localStorage
+            const rechargeHistory = JSON.parse(localStorage.getItem('rechargeHistory')) || [];
+            const rechargeSection = document.getElementById('rechargeSection');
+
+            // Recharge history ko display karna
+            rechargeSection.innerHTML = '<h3>Recharge History</h3>';  // Reset karna recharge section ko
+            rechargeHistory.forEach((recharge, index) => {
+                const listItem = document.createElement('div');
+                listItem.className = 'record';
+                listItem.textContent = `Recharge #${index + 1}: ₹${recharge.amount}`;
+                rechargeSection.appendChild(listItem);
+            });
+
+            // Withdraw aur profit calculation
+            const totalRecharge = rechargeHistory.reduce((total, recharge) => total + recharge.amount, 0);
+            const withdrawAmount = 6000; // Example: ₹6000
+
+            let netProfit;
+            let taxAmount = 0;
+
+            if (withdrawAmount > totalRecharge) {
+                const grossProfit = withdrawAmount - totalRecharge;
+                taxAmount = grossProfit * 0.10;
+                netProfit = grossProfit - taxAmount;
+            } else {
+                netProfit = withdrawAmount - totalRecharge;
+            }
+
+            // Display updates
+            document.getElementById('rechargeTotalDisplay').textContent = `Total Recharge: ₹${totalRecharge}`;
+            document.getElementById('withdrawDisplay').textContent = `Withdraw Amount: ₹${withdrawAmount}`;
+            document.getElementById('totalTaxDisplay').textContent = `Total Tax: ₹${taxAmount.toFixed(2)}`;
+
+            const profitDisplay = document.getElementById('profitDisplay');
+            if (netProfit >= 0) {
+                profitDisplay.textContent = `Profit: ₹${netProfit.toFixed(2)}`;
+                profitDisplay.className = 'record profit-positive';
+            } else {
+                profitDisplay.textContent = `Profit: ₹${netProfit.toFixed(2)}`;
+                profitDisplay.className = 'record profit-negative';
+            }
+        }
+
+        // Recharge ko localStorage mein add karne ke liye function
+        function addRecharge(amount) {
+            const rechargeHistory = JSON.parse(localStorage.getItem('rechargeHistory')) || [];
+            rechargeHistory.push({ amount });
+            localStorage.setItem('rechargeHistory', JSON.stringify(rechargeHistory));
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

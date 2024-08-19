@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind Bank Card</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #adf9f2;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .btn-custom {
+            background-color: #f9c513;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+     <a class="navbar-brand" href="#" onclick="goBack()"><img src="back.png" alt="Back"></a>
+    <h3 class="text-center mb-4">Bind Bank Card</h3>
+    <form>
+        <div class="mb-3">
+            <label for="actualName" class="form-label">Actual Name</label>
+            <input type="text" class="form-control" id="actualName" placeholder="Please Enter Your Real Name">
+        </div>
+        <div class="mb-3">
+            <label for="bankName" class="form-label">Bank Name</label>
+            <select class="form-select" id="bankName">
+                <option selected>Please Select Your Bank Name</option>
+                <option value="Bank1">Bank 1</option>
+                <option value="Bank2">Bank 2</option>
+                <option value="Bank3">Bank 3</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="account" class="form-label">Account Number</label>
+            <input type="text" class="form-control" id="account" placeholder="Please Enter Your Account Number">
+        </div>
+        <div class="mb-3">
+            <label for="ifsc" class="form-label">IFSC</label>
+            <input type="text" class="form-control" id="ifsc" placeholder="Please Enter The IFSC Code">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Please Enter The Payment Password">
+        </div>
+        
+        <div class="mb-3">
+           
+        </div>
+        <button type="submit" class="btn btn-custom w-100">Submit</button>
+    </form>
+    <div class="mt-3">
+        <p>1. Please bind your daily account so that withdrawals can reach your account faster.</p>
+        <p>2. Please fill in your payment account information correctly, where the IFSC must be 11 digits and the fifth digit must be 0.</p>
+        <p>3. Please keep your account password safe and do not tell anyone. Adding and changing receiving account information is restricted.</p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+    function goBack() {
+            window.history.back();}
+</script>
+</body>
+</html>

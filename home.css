@@ -1,0 +1,126 @@
+  body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .navbar-custom {
+            background-color:#adf9f2 ;
+            color: #d35400;
+            font-weight: bold;
+        }
+        .navbar-custom .navbar-brand {
+            color: #d35400;
+        }
+        .navbar-custom .navbar-nav .nav-link {
+            color: #d35400;
+        }
+        .icon-button {
+            background-color:  #adf9f2 ;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        .icon-button img {
+            max-width: 100%;
+            height: auto;
+        }
+        .icon-button span {
+            display: block;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+        .promo-section img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .promo-section video {
+            width: 100%;
+            border-radius: 10px;
+        }
+        /* Full-screen video styling */
+        .video-container {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            overflow: hidden;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Full-screen mode for mobile and desktop */
+        .video-container video:fullscreen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Styles to ensure the video fits well in mobile and desktop */
+        @media (max-width: 768px) {
+            .video-container {
+                padding-top: 100%; /* Square aspect ratio for mobile */
+            }
+        }
+
+        /* Bottom navigation padding */
+        .navbar.fixed-bottom {
+            padding-bottom: 10px;
+        }
+
+        /* Center play button in video */
+        .video-container video::cue {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+      
+     .custom-card-body {
+    display: flex;
+    flex-direction: column; /* Ensures content is aligned vertically */
+    justify-content: space-between; /* Ensures content is spaced out */
+    background-color:  #adf9f2; /* Light Pink */
+    padding: 5px;
+    border-radius: 5px;
+    color: #333; /* Dark text color for contrast */
+}
+
+.custom-card-body .card-text {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 3.2vw;
+    color: black;
+}
+
+.custom-card-body .card-tex {
+    font-weight: bold;
+    font-size: 3.2vw;
+    color: red;
+    text-align: right;
+}
+.custom-card-body .ter{
+    margin-bottom: 5px;
+    font-weight: bold;
+     font-size: 5.6vw;
+   color: red;
+}
+.custom-card-body .ter-img{
+    height: 8vw;
+}
+.center{
+    text-align:center;
+    font-size: 8vw;
+    color: red;
+    font-weight: bold;
+}
+.centered-text {
+            text-align: center;
+            color: #888;
+            margin-top: 8px;
+        }
